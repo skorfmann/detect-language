@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+require 'bundler'
+Bundler.require(:default)
+
+require File.join(File.expand_path(File.dirname(__FILE__)), %w(.. lib detect_language))
+
+if File.exists?(file_path = ARGV[0])
+  detector = DetectLanguage.new
+  puts "detected language: #{detector.detect(IO.read(file_path))}"
+else
+  puts "please provide a valid file"
+end
